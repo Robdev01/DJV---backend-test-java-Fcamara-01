@@ -3,22 +3,28 @@ package desafio.fcamara.desafio.entity;
 import desafio.fcamara.desafio.enuns.TipoVeiculo;
 import jakarta.persistence.*;
 
+// @Entity informa ao JPA que esta classe representa uma tabela no banco de dados.
 @Entity
 public class Veiculo {
 
+    // @Id marca o campo como chave primaria da tabela.
     @Id
+    // IDENTITY deixa o banco gerar o id automaticamente quando salvar um novo registro.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Campos simples viram colunas da tabela veiculo.
     private String marca;
     private String modelo;
     private String cor;
     private String placa;
 
+    // EnumType.STRING salva o nome do enum no banco, por exemplo CARRO ou MOTO.
+    // Isso e mais legivel do que salvar a posicao numerica do enum.
     @Enumerated(EnumType.STRING)
     private TipoVeiculo tipo;
 
-    // GETTERS E SETTERS
+    // Getters e setters permitem que o Spring/Jackson leia e preencha o objeto pelo JSON.
 
     public Long getId() {
         return id;
